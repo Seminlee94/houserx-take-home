@@ -12,7 +12,10 @@
     "build": "next build",
     "start": "next start -p 8000",
     "lint": "next lint",
-    "analyze": "ANALYZE=true next build"
+    "analyze": "ANALYZE=true next build",
+    "e2e:reset": "node scripts/e2e-reset.mjs",
+    "dev:test": "node scripts/dev-test.mjs",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",
@@ -40,6 +43,7 @@
   "devDependencies": {
     "@babel/core": "^7.17.5",
     "@medusajs/types": "2.21.2",
+    "@playwright/test": "^1.64.1",
     "@types/lodash": "^4.14.195",
     "@types/node": "17.0.21",
     "@types/pg": "^8.11.0",

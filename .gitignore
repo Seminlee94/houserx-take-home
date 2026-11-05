@@ -43,6 +43,11 @@ yarn-error.log*
 .turbo
 .vscode
 
+# Playwright e2e
+test-results
+playwright-report
+**/e2e/.env.e2e
+
 # vercel
 .vercel
 

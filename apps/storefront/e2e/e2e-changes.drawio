@@ -1,0 +1,382 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram name="E2E test suite — code changes">
+    <mxGraphModel dx="800" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="E2E test suite — code changes" style="text;html=1;align=center;fontStyle=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="770" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ca" value="Added" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;verticalAlign=top;align=center;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="40" y="70" width="360" height="760" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" value="&lt;b&gt;1. scripts/e2e-reset.mjs&lt;/b&gt;&lt;br/&gt;drop + recreate + migrate test DB, read seeded key, write e2e/.env.e2e" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="110" width="320" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" value="&lt;b&gt;2. playwright.config.ts&lt;/b&gt;&lt;br/&gt;load .env.e2e; two webServers (backend :9001, storefront :8001); baseURL :8001" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="195" width="320" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" value="&lt;b&gt;3. e2e/load-env.ts&lt;/b&gt;&lt;br/&gt;read .env.e2e, fail fast if missing" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="280" width="320" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" value="&lt;b&gt;4. e2e/fixtures.ts&lt;/b&gt;&lt;br/&gt;catalog (read-only), storeApi, newShopper (own context), apiCart" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="355" width="320" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="a5" value="&lt;b&gt;5. e2e/pages/&lt;/b&gt;&lt;br/&gt;ProductPage, CartPage page objects" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="440" width="320" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a6" value="&lt;b&gt;6. cart-pricing.spec.ts&lt;/b&gt;&lt;br/&gt;add M/Black, qty 1-&gt;2 (EUR 10-&gt;20), two-shopper isolation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="515" width="320" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="a7" value="&lt;b&gt;7. cart-quantity-failures.spec.ts&lt;/b&gt;&lt;br/&gt;reject neg, non-number, missing line item" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="600" width="320" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a8" value="&lt;b&gt;8. pricing-regression.spec.ts&lt;/b&gt;&lt;br/&gt;mock POST /dk/cart -&gt; 500, marked test.fail()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="675" width="320" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cc" value="Changed" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;verticalAlign=top;align=center;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="450" y="70" width="360" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="c9" value="&lt;b&gt;9. package.json&lt;/b&gt;&lt;br/&gt;scripts e2e:reset + test:e2e; devDep @playwright/test" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="470" y="110" width="320" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c10" value="&lt;b&gt;10. tsconfig.json&lt;/b&gt;&lt;br/&gt;exclude e2e + playwright.config.ts from the build" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="470" y="195" width="320" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="c11" value="&lt;b&gt;11. .gitignore&lt;/b&gt;&lt;br/&gt;ignore test-results, playwright-report, e2e/.env.e2e" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="470" y="270" width="320" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cr" value="Runtime" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;verticalAlign=top;align=center;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="450" y="420" width="360" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="r1" value="&lt;b&gt;pnpm run e2e:reset&lt;/b&gt;&lt;br/&gt;(slow, on demand) rebuild + seed test DB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="470" y="460" width="320" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r2" value="&lt;b&gt;pnpm run test:e2e&lt;/b&gt;&lt;br/&gt;(fast) load config, no DB work" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="470" y="540" width="320" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r3" value="&lt;b&gt;boot + run&lt;/b&gt;&lt;br/&gt;backend :9001 + storefront :8001, run specs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="470" y="620" width="320" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="a1" target="a2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="a2" target="a3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="a3" target="a4"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="a4" target="a5"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="a5" target="a6"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="a6" target="a7"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="a7" target="a8"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="c9" target="c10"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="c10" target="c11"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="r1" target="r2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="r2" target="r3"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="e12" value="produces" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;" edge="1" parent="1" source="a1" target="r1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e13" value="drives" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;" edge="1" parent="1" source="a2" target="r2"><mxGeometry relative="1" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="API tests in the architecture">
+    <mxGraphModel dx="800" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="p2title" value="API tests: how they fit the test architecture" style="text;html=1;align=center;fontStyle=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lg1" value="exists today" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="58" width="110" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="lg2" value="proposed" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="58" width="110" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="lg3" value="only if needed later" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;dashed=1;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="280" y="58" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="s1" value="1. Same runner, same stack, shorter path" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;verticalAlign=top;align=left;spacingLeft=12;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="40" y="95" width="1120" height="480" as="geometry" />
+        </mxCell>
+        <mxCell id="run" value='Playwright runner&lt;br/&gt;&lt;span style="font-weight:normal;font-size:12px"&gt;pnpm run test:e2e&lt;/span&gt;' style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;verticalAlign=top;align=center;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="60" y="135" width="250" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="ui" value="&lt;b&gt;project: ui&lt;/b&gt;&lt;br/&gt;cart-pricing.spec.ts&lt;br/&gt;pricing-regression.spec.ts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="195" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="api" value="&lt;b&gt;project: api&lt;/b&gt;&lt;br/&gt;e2e/api/*.api.spec.ts&lt;br/&gt;No browser launched" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="315" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="chrome" value="&lt;b&gt;Chromium&lt;/b&gt;&lt;br/&gt;own BrowserContext, own _medusa_cart_id cookie" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="370" y="200" width="170" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="sf" value="&lt;b&gt;Storefront :8001&lt;/b&gt;&lt;br/&gt;Next.js pages and server actions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="600" y="200" width="170" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="be" value="&lt;b&gt;Backend :9001&lt;/b&gt;&lt;br/&gt;Medusa /store/* routes and workflows" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="830" y="200" width="140" height="205" as="geometry" />
+        </mxCell>
+        <mxCell id="db" value="&lt;b&gt;medusa-dtc-starter-test&lt;/b&gt;&lt;br/&gt;seeded catalog, throwaway carts" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;size=12;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="250" width="145" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="sa" value="&lt;b&gt;storeApi fixture&lt;/b&gt; (APIRequestContext)&lt;br/&gt;HTTP plus x-publishable-api-key. Skips browser and storefront.&lt;br/&gt;UI specs already use it to cross-check the persisted cart." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="370" y="320" width="400" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="reset" value="&lt;b&gt;pnpm run e2e:reset&lt;/b&gt;&lt;br/&gt;drops, migrates and seeds the test DB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="445" width="250" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="env" value="&lt;b&gt;e2e/.env.e2e&lt;/b&gt; via load-env.ts&lt;br/&gt;backend URL, ports, publishable key" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="370" y="445" width="400" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="pom" value="&lt;b&gt;Page objects&lt;/b&gt; in e2e/pages/: ProductPage, CartPage&lt;br/&gt;Hold selectors and server-action waits; specs only call methods." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="370" y="122" width="400" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="x1" value="uses" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;exitX=1;exitY=0.2;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ui" target="pom"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="330" y="213" /><mxPoint x="330" y="149.5" /></Array></mxGeometry></mxCell>
+        <mxCell id="x1b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;exitX=0.2125;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pom" target="chrome"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+        <mxCell id="x2" value="HTTP" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="chrome" target="sf"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+        <mxCell id="x3" value="SDK" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.2;entryDx=0;entryDy=0;" edge="1" parent="1" source="sf" target="be"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+        <mxCell id="x4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="be" target="db"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+        <mxCell id="x5" value="calls" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="api" target="sa"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+        <mxCell id="x6" value="HTTP" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.78;entryDx=0;entryDy=0;" edge="1" parent="1" source="sa" target="be"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+        <mxCell id="x7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;dashed=1;exitX=1;exitY=0.8;exitDx=0;exitDy=0;entryX=0;entryY=0.2;entryDx=0;entryDy=0;" edge="1" parent="1" source="ui" target="sa"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="330" y="267" /><mxPoint x="330" y="336" /></Array></mxGeometry></mxCell>
+        <mxCell id="x8" value="writes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="reset" target="env"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+        <mxCell id="x9" value="URL + key" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="env" target="sa"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+        <mxCell id="x10" value="rebuilds" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="reset" target="db"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="185" y="548" /><mxPoint x="1072" y="548" /></Array></mxGeometry></mxCell>
+        <mxCell id="s2" value="2. Separate lane for backend-only logic (not built)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;verticalAlign=top;align=left;spacingLeft=12;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="40" y="590" width="1120" height="165" as="geometry" />
+        </mxCell>
+        <mxCell id="jest" value="&lt;b&gt;Jest in apps/backend&lt;/b&gt;&lt;br/&gt;test:integration:http&lt;br/&gt;integration-tests/http/*.spec.ts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;dashed=1;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="60" y="630" width="250" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="runner" value="&lt;b&gt;medusaIntegrationTestRunner&lt;/b&gt; (@medusajs/test-utils, installed)&lt;br/&gt;boots Medusa inside the test process" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;dashed=1;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="370" y="630" width="400" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="tmpdb" value="&lt;b&gt;temporary DB&lt;/b&gt;&lt;br/&gt;no seed data" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;size=12;fillColor=#ffffff;strokeColor=#999999;dashed=1;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="830" y="625" width="140" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="jestnote" value="Use it when a custom route or workflow has logic worth testing, e.g. a future src/api/store/* route with real behavior. The only custom store route today is the /store/custom stub.&lt;br/&gt;Don't use it for the cart contract: it starts with no seed data, so the catalog fixtures would have to be rebuilt." style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="60" y="712" width="1090" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="y1" value="starts" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="jest" target="runner"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+        <mxCell id="y2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="runner" target="tmpdb"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+        <mxCell id="s3" value="3. What an API test looks like" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;verticalAlign=top;align=left;spacingLeft=12;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="40" y="770" width="570" height="305" as="geometry" />
+        </mxCell>
+        <mxCell id="ex" value='import&amp;nbsp;{&amp;nbsp;test,&amp;nbsp;expect,&amp;nbsp;BLACK_SKU,&amp;nbsp;EXPECTED_PRICE&amp;nbsp;}&amp;nbsp;from&amp;nbsp;"../fixtures"&lt;br/&gt;&lt;br/&gt;test("quantity&amp;nbsp;change&amp;nbsp;reprices&amp;nbsp;the&amp;nbsp;persisted&amp;nbsp;cart",&lt;br/&gt;&amp;nbsp;&amp;nbsp;async&amp;nbsp;({&amp;nbsp;storeApi,&amp;nbsp;apiCart&amp;nbsp;})&amp;nbsp;=&amp;gt;&amp;nbsp;{&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;const&amp;nbsp;res&amp;nbsp;=&amp;nbsp;await&amp;nbsp;storeApi.updateItem(&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;apiCart.cartId,&amp;nbsp;apiCart.lineId,&amp;nbsp;{&amp;nbsp;quantity:&amp;nbsp;2&amp;nbsp;})&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;expect(res.status).toBe(200)&lt;br/&gt;&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;const&amp;nbsp;{&amp;nbsp;body&amp;nbsp;}&amp;nbsp;=&amp;nbsp;await&amp;nbsp;storeApi.getCart(apiCart.cartId)&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;const&amp;nbsp;[item]&amp;nbsp;=&amp;nbsp;body.cart.items&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;expect(item.variant.sku).toBe(BLACK_SKU)&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;expect(item.quantity).toBe(2)&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;expect(item.unit_price).toBe(EXPECTED_PRICE)&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;expect(body.cart.currency_code).toBe("eur")&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;expect(body.cart.item_subtotal).toBe(EXPECTED_PRICE&amp;nbsp;*&amp;nbsp;2)&lt;br/&gt;&amp;nbsp;&amp;nbsp;})' style="rounded=0;html=1;align=left;verticalAlign=top;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#666666;spacingLeft=10;spacingTop=6;fontFamily=Courier New;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="60" y="805" width="530" height="255" as="geometry" />
+        </mxCell>
+        <mxCell id="s4" value="4. Config change in playwright.config.ts" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;verticalAlign=top;align=left;spacingLeft=12;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1090" width="570" height="215" as="geometry" />
+        </mxCell>
+        <mxCell id="cfg" value='projects:&amp;nbsp;[&lt;br/&gt;&amp;nbsp;&amp;nbsp;{&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;name:&amp;nbsp;"ui",&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;testIgnore:&amp;nbsp;"**/api/**",&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;use:&amp;nbsp;{&amp;nbsp;...devices["Desktop&amp;nbsp;Chrome"]&amp;nbsp;},&lt;br/&gt;&amp;nbsp;&amp;nbsp;},&lt;br/&gt;&amp;nbsp;&amp;nbsp;{&amp;nbsp;name:&amp;nbsp;"api",&amp;nbsp;testDir:&amp;nbsp;"./e2e/api"&amp;nbsp;},&lt;br/&gt;],' style="rounded=0;html=1;align=left;verticalAlign=top;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#666666;spacingLeft=10;spacingTop=6;fontFamily=Courier New;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1125" width="530" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="cfgnote" value="webServer is global: gate the storefront entry so an API-only run needs just the backend." style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1265" width="530" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="s5" value="5. Proposed API suite (e2e/api/)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;verticalAlign=top;align=left;spacingLeft=12;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="630" y="770" width="530" height="535" as="geometry" />
+        </mxCell>
+        <mxCell id="r1" value='&lt;b&gt;cart-quantity-failures.api.spec.ts&lt;/b&gt; (move existing)&lt;br/&gt;qty -1 and "2" give 400; missing line item rejected; cart stays 1x, EUR 10' style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="650" y="805" width="490" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="r2" value="&lt;b&gt;cart-pricing.api.spec.ts&lt;/b&gt;&lt;br/&gt;add 1x gives EUR 10; qty 2 gives EUR 20; SKU, unit price and currency match" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="650" y="890" width="490" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="r3" value="&lt;b&gt;store-contract.api.spec.ts&lt;/b&gt;&lt;br/&gt;no publishable key: 400; unknown cart: 404; unknown variant: 400" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="650" y="975" width="490" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="r4" value="&lt;b&gt;cart-fractional-quantity.api.spec.ts&lt;/b&gt;&lt;br/&gt;qty 1.5 should be 400 but is accepted. Mark test.fail() until the backend adds .int()" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="650" y="1060" width="490" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="r5" value="&lt;b&gt;checkout-order.api.spec.ts&lt;/b&gt;&lt;br/&gt;address, shipping, payment, complete; assert order totals; no duplicate on re-submit (planned in SUBMISSION.md, not probed)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;dashed=1;fontColor=#555555;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="650" y="1145" width="490" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="r6" value="&lt;b&gt;UI specs keep&lt;/b&gt; one flow per customer scenario. Math and failure cases move down to this layer." style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="650" y="1240" width="490" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="s6" value="6. What a UI test looks like with page objects" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;verticalAlign=top;align=left;spacingLeft=12;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1320" width="1120" height="345" as="geometry" />
+        </mxCell>
+        <mxCell id="ui_ex" value='//&amp;nbsp;cart-pricing.spec.ts&amp;nbsp;(simplified)&lt;br/&gt;test("adds&amp;nbsp;M/Black&amp;nbsp;and&amp;nbsp;reprices",&lt;br/&gt;&amp;nbsp;&amp;nbsp;async&amp;nbsp;({&amp;nbsp;newShopper&amp;nbsp;})&amp;nbsp;=&amp;gt;&amp;nbsp;{&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;const&amp;nbsp;{&amp;nbsp;productPage,&amp;nbsp;cartPage&amp;nbsp;}&amp;nbsp;=&amp;nbsp;await&amp;nbsp;newShopper()&lt;br/&gt;&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;await&amp;nbsp;productPage.addShirt("Black")&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;await&amp;nbsp;cartPage.goto()&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;await&amp;nbsp;cartPage.expectSubtotal(10)&lt;br/&gt;&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;await&amp;nbsp;cartPage.changeQuantity(2)&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;await&amp;nbsp;cartPage.expectSubtotal(20)&lt;br/&gt;&amp;nbsp;&amp;nbsp;})' style="rounded=0;html=1;align=left;verticalAlign=top;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#666666;spacingLeft=10;spacingTop=6;fontFamily=Courier New;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1355" width="530" height="245" as="geometry" />
+        </mxCell>
+        <mxCell id="pom_ex" value='//&amp;nbsp;pages/cart-page.ts&amp;nbsp;(excerpt)&lt;br/&gt;export&amp;nbsp;class&amp;nbsp;CartPage&amp;nbsp;{&lt;br/&gt;&amp;nbsp;&amp;nbsp;async&amp;nbsp;expectSubtotal(amount:&amp;nbsp;number)&amp;nbsp;{&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;await&amp;nbsp;expect(this.subtotal)&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;.toHaveAttribute("data-value",&amp;nbsp;String(amount))&lt;br/&gt;&amp;nbsp;&amp;nbsp;}&lt;br/&gt;&lt;br/&gt;&amp;nbsp;&amp;nbsp;async&amp;nbsp;changeQuantity(quantity:&amp;nbsp;number)&amp;nbsp;{&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;const&amp;nbsp;updated&amp;nbsp;=&amp;nbsp;this.page.waitForResponse(&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;(r)&amp;nbsp;=&amp;gt;&amp;nbsp;r.request().method()&amp;nbsp;===&amp;nbsp;"POST"&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;amp;&amp;amp;&amp;nbsp;r.url().includes("/dk/cart")&amp;nbsp;&amp;amp;&amp;amp;&amp;nbsp;r.ok())&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;await&amp;nbsp;this.selectQuantity(quantity)&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;await&amp;nbsp;updated&lt;br/&gt;&amp;nbsp;&amp;nbsp;}&lt;br/&gt;}' style="rounded=0;html=1;align=left;verticalAlign=top;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#666666;spacingLeft=10;spacingTop=6;fontFamily=Courier New;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="610" y="1355" width="530" height="245" as="geometry" />
+        </mxCell>
+        <mxCell id="pom_note" value="newShopper creates both page objects for each shopper's own page. API tests don't use them: storeApi is their reusable layer. Fault injection stays in pricing-regression.spec.ts because it's specific to that test." style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1610" width="1080" height="45" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="API, load and security testing">
+    <mxGraphModel dx="800" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1330" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="t3" value="What to test next: API, load and security" style="text;html=1;align=center;fontStyle=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="k1" value="exists today" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="58" width="110" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="k2" value="proposed" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="58" width="110" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="k3" value="not checked yet" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;dashed=1;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="280" y="58" width="130" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="k4" value="problem seen" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="420" y="58" width="120" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="g1" value="1. Where each kind of testing comes in" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;verticalAlign=top;align=left;spacingLeft=12;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="40" y="95" width="1120" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="st1" value="&lt;b&gt;Every PR: API tests&lt;/b&gt;&lt;br/&gt;Playwright api project on the e2e stack. Runs in seconds, so it fails first." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="135" width="240" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="st2" value="&lt;b&gt;Every PR: UI tests&lt;/b&gt;&lt;br/&gt;Playwright ui project using page objects. One flow per customer scenario." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="340" y="135" width="240" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="st3" value="&lt;b&gt;Nightly and before release: load and automated security&lt;/b&gt;&lt;br/&gt;k6 and ZAP baseline against a production build." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="620" y="135" width="240" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="st4" value="&lt;b&gt;Before launch and after major changes: penetration test&lt;/b&gt;&lt;br/&gt;Manual and time-boxed, on staging." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="135" width="240" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="f1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="st1" target="st2"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+        <mxCell id="f2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="st2" target="st3"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+        <mxCell id="f3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="st3" target="st4"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+        <mxCell id="f4" value="API cart flows become k6 scenarios" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;dashed=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="st1" target="st3"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="240" y="258" /><mxPoint x="740" y="258" /></Array></mxGeometry></mxCell>
+        <mxCell id="f5" value="findings become API regression tests" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="st4" target="st1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1020" y="282" /><mxPoint x="120" y="282" /></Array></mxGeometry></mxCell>
+        <mxCell id="n1" value="No stage runs automatically yet: the only CI workflow is .github/workflows/update.yaml, so running tests in CI is the first step." style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="60" y="312" width="1080" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="g2" value="2. API tests to add, by priority" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;verticalAlign=top;align=left;spacingLeft=12;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="40" y="360" width="1120" height="405" as="geometry" />
+        </mxCell>
+        <mxCell id="h1" value="Priority and area" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#e6e6e6;strokeColor=#666666;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="395" width="230" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="h2" value="What the test asserts" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#e6e6e6;strokeColor=#666666;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="395" width="460" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="h3" value="Seen on :9001 today" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#e6e6e6;strokeColor=#666666;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="750" y="395" width="390" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="a0" value="&lt;b&gt;P1 Cart pricing&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="423" width="230" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="b0" value="Add 1x gives EUR 10, qty 2 gives EUR 20; SKU, unit price and currency match" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="423" width="460" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c0" value="Passes" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="750" y="423" width="390" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" value="&lt;b&gt;P1 Quantity validation&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="469" width="230" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="b1" value='-1, "2", fractional and over-stock quantities are rejected; cart unchanged' style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="469" width="460" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" value='-1, "2" and 2,000,000 give 400. 1.5 is accepted: defect' style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="750" y="469" width="390" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" value="&lt;b&gt;P1 Price integrity&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="515" width="230" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="b2" value="A unit_price sent by the client can't change the price" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="515" width="460" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" value="400 on add and update; line stays at EUR 10" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="750" y="515" width="390" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" value="&lt;b&gt;P1 Checkout to order&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#ffffff;strokeColor=#999999;dashed=1;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="60" y="561" width="230" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="b3" value="Empty cart can't complete; order keeps its totals; re-submitting creates no second order" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#ffffff;strokeColor=#999999;dashed=1;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="290" y="561" width="460" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" value="Empty cart gives 400. Happy path not checked" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#ffffff;strokeColor=#999999;dashed=1;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="750" y="561" width="390" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" value="&lt;b&gt;P2 Auth boundaries&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#ffffff;strokeColor=#999999;dashed=1;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="60" y="607" width="230" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="b4" value="No key gives 400; no valid token gives 401; one customer can't reach another's data" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#ffffff;strokeColor=#999999;dashed=1;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="290" y="607" width="460" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" value="400 and 401 as expected. Cross-customer access not checked" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#ffffff;strokeColor=#999999;dashed=1;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="750" y="607" width="390" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="a5" value="&lt;b&gt;P3 Concurrent writes&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="653" width="230" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="b5" value="Parallel adds to one cart never return 500; total equals the adds accepted" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="653" width="460" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" value="One cart: up to 5 parallel adds fine, at 10 about 1 in 5 get 500; totals stay correct. Separate carts: 250 of 250 passed" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="750" y="653" width="390" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="a6" value="&lt;b&gt;P3 Remaining routes&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#ffffff;strokeColor=#999999;dashed=1;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="60" y="699" width="230" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="b6" value="Promotions, shipping options, registered customers, returns, response shape" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#ffffff;strokeColor=#999999;dashed=1;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="290" y="699" width="460" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c6" value="Not checked" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#ffffff;strokeColor=#999999;dashed=1;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="750" y="699" width="390" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="g3" value="3. Load testing with k6" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;verticalAlign=top;align=left;spacingLeft=12;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="40" y="780" width="550" height="515" as="geometry" />
+        </mxCell>
+        <mxCell id="l0" value="&lt;b&gt;What to run&lt;/b&gt;&lt;br/&gt;The cart flow from the API suite: create cart, add, change quantity. Add browsing and checkout once they're covered." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="815" width="510" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="l1" value="&lt;b&gt;Where to run it&lt;/b&gt;&lt;br/&gt;medusa build + start and next build + start with their own DB. Not :9001 or :8001: those are dev servers, so timings mean little." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="893" width="510" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="l2" value="&lt;b&gt;Test types&lt;/b&gt;&lt;br/&gt;Smoke (does the script work), load (expected traffic), stress and spike (find the limit), soak (leaks over hours)." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="971" width="510" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="l3" value="&lt;b&gt;What counts as a pass&lt;/b&gt;&lt;br/&gt;Agreed p95 and error-rate targets, and subtotals still correct under load. Set targets from expected traffic; none exist yet." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1049" width="510" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="l4" value="&lt;b&gt;Settle first&lt;/b&gt;&lt;br/&gt;REDIS_URL is in .env but medusa-config.ts doesn't use it, so Medusa uses in-memory defaults. Decide this before testing multiple instances." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1127" width="510" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="l5" value="&lt;b&gt;Smoke run so far&lt;/b&gt;&lt;br/&gt;5 users for 15s on the dev server: 90 requests, 0 failed, all subtotals right. The script works; p95 of 2.54s is not a benchmark." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1205" width="510" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="g4" value="4. Security and penetration testing" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;verticalAlign=top;align=left;spacingLeft=12;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="610" y="780" width="550" height="515" as="geometry" />
+        </mxCell>
+        <mxCell id="s0" value="&lt;b&gt;Every build&lt;/b&gt;&lt;br/&gt;pnpm audit for dependencies and a secret scan. Cheap checks that need no running app." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="815" width="510" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="s1" value="&lt;b&gt;Nightly&lt;/b&gt;&lt;br/&gt;ZAP baseline scan via Docker against the production build: headers, CORS and common misconfigurations." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="893" width="510" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" value="&lt;b&gt;Penetration test scope&lt;/b&gt;&lt;br/&gt;Cross-customer access, cart ID exposure, checkout and order tampering, login brute force, admin dashboard and API." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="971" width="510" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" value="&lt;b&gt;Ground rules&lt;/b&gt;&lt;br/&gt;Staging with production config, written scope and authorization, no real customer data, test payment provider only." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="1049" width="510" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="s4" value="&lt;b&gt;Gaps seen&lt;/b&gt;&lt;br/&gt;200 rapid requests all returned 200, and src has no rate-limit code; hosting could add it, none is set up here. X-Powered-By: Express is exposed." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="630" y="1127" width="510" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="s5" value="&lt;b&gt;Held up in spot checks (not a pen test)&lt;/b&gt;&lt;br/&gt;Other origins get no CORS allow header; SQL-like cart ID gives 404. A cart ID plus the public key opens a cart, so that ID must not leak." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="630" y="1205" width="510" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
